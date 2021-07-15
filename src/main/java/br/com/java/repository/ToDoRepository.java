@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.com.java.model.ToDo;
 
 @Repository
-public interface ToDoRepository extends JpaRepository <ToDo, String>{
+public interface ToDoRepository extends JpaRepository <ToDo, Integer>{
 
 }

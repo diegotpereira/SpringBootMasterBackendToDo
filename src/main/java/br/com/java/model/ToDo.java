@@ -1,18 +1,22 @@
 package br.com.java.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class ToDo {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     private String name;
+
     private String details;
+
     private boolean done;
+
     public ToDo() {
     }
-    public ToDo(String id, String name, String details, boolean done) {
+    public ToDo(Integer id, String name, String details, boolean done) {
         this.id = id;
         this.name = name;
         this.details = details;
@@ -21,14 +25,14 @@ public class ToDo {
     /**
      * @return String return the id
      */
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
