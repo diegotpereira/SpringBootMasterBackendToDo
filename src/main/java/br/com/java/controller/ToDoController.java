@@ -9,6 +9,7 @@ import br.com.java.model.ToDo;
 import br.com.java.repository.ToDoRepository;
 
 @RestController
+@RequestMapping("/todo")
 public class ToDoController {
 
     @Autowired
@@ -18,21 +19,21 @@ public class ToDoController {
         this.repository = repository;
     }
 
-    @GetMapping("/todo")
+    @GetMapping("/all")
     List<ToDo> findAll() {
         return this.repository.findAll();
     }
 
-    @GetMapping("/todo/{id}")
+    @GetMapping("/buscar/{id}")
     ToDo findById(@PathVariable String id) {
         return this.repository.findById(id).orElseThrow(() -> new RuntimeException("Not found."));
     }
 
-    @PostMapping("/todo")
+    @PostMapping("/add")
     ToDo save(@RequestBody ToDo toDo) {
         return this.repository.save(toDo);
     }
-    @PutMapping("/todo/{id}")
+    @PutMapping("/update/{id}")
     ToDo replaceById(@RequestBody ToDo newToDo, @PathVariable String id) {
         return this.repository.findById(id)
                 .map(toDo -> {
@@ -47,7 +48,7 @@ public class ToDoController {
                 });
     }
 
-    @DeleteMapping("/todo/{id}")
+    @DeleteMapping("/deletar/{id}")
     void deleteById(@PathVariable String id) {
         this.repository.deleteById(id);
     }
